@@ -1,0 +1,27 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+}
+
+@keyframes hidepicture {
+    from {filter:brightness(100%)}
+    to {filter:brightness(0%)}
+}
+
+.hide {
+    animation-name: hidepicture;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes showpicture {
+    from {filter:brightness(0%)}
+    to {filter:brightness(100%)}
+}
+
+.show {
+    animation-name: showpicture;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
