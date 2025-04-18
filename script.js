@@ -68,7 +68,7 @@ function localStorageSave()
     const object = {
         email: email.value,
         age: Number(age.value),
-        chosen_level: span.innerText,
+        chosen_level: span.innerText.toLocaleLowerCase("hu-HU"),
         playtime: Math.round((Date.now() - t) / 1000),
         mistakes: misses,
         created_at: date
@@ -83,17 +83,31 @@ function localStorageSave()
     PostToServer(object);
 }
 
-function PostToServer(obj = {})
+async function PostToServer(obj = {})
 {
     const o = {email: obj.email, age: obj.age, level: obj.chosen_level, time: obj.playtime, mistakes: obj.mistakes};
-    const xhr = new XMLHttpRequest();
 
-    xhr.open("POST", "http://localhost/memory/create/index.php");
-    xhr.onload = (e) => console.log(e);
-    xhr.onerror = (e) => console.log(e);
-    xhr.onreadystatechange = (e) => { if(xhr.status == xhr.DONE) console.log(e); }
-    xhr.onloadend = (e) => {console.log(e, xhr.response);}
-    xhr.send(JSON.stringify(o));
+    const r = await fetch("http://localhost/memory/create/index.php", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(o)
+    });
+    if (!r.ok) throw new Error(r.statusText);
+
+    const data = await r.json();
+    console.log(data);
+
+    // const xhr = new XMLHttpRequest();
+
+    // xhr.open("POST", "http://localhost/memory/create/index.php");
+    // xhr.onload = (e) => console.log(e);
+    // xhr.onerror = (e) => console.log(e);
+    // xhr.onreadystatechange = (e) => { if(xhr.status == xhr.DONE) console.log(e); }
+    // xhr.onloadend = (e) => {console.log(e, xhr.response);}
+    // xhr.send(JSON.stringify(o));
 }
 
 function pairFound(e)
