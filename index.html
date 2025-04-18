@@ -7,15 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="range" id="slider" min="1" max="3" value="1">
-    <span id="szoveg">Könnyű</span>
-    <button type="button" id="start">START</button>
-    <button id="ability1" disabled>🃏</button>
-    <button id="ability2" disabled>👁️</button>
-    <span id="timer">Hiba: 0 / Pár: 0 / Idő: 0.000 s</span>
-    <div class="container">
-        
+    <a href="./eredmeny.html">Eredmények</a>
+    <div class="cred">
+        <input type="text" name="" id="email">
+        <input type="number" name="" id="age">
+        <input type="range" id="slider" min="1" max="3" value="1">
+        <span id="szoveg">Könnyű</span>
     </div>
-    <script src="./script.js"></script>
+    <button type="button" id="start">START</button>
+    <div class="game" hidden>
+        <button id="ability1" disabled>🃏</button>
+        <button id="ability2" disabled>👁️</button>
+        <span id="timer">Hiba: 0 / Pár: 0 / Idő: 0.000 s</span>
+        <div class="container">
+            
+        </div>
+        <script src="./script.js"></script>
+    </div>
 </body>
 </html>
